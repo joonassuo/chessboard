@@ -12,6 +12,9 @@ const blackQueen ='background-image:url(https://upload.wikimedia.org/wikipedia/c
 const blackKing ='background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Chess_kdt45.svg/68px-Chess_kdt45.svg.png);'
 
 
+
+//--------------------------SET BOARD----------------------------------
+
 // universal function for setting pieces in their places
 function selectorFunction(id, piece) {
     document.querySelector(id).style.cssText = piece;
@@ -20,7 +23,6 @@ function selectorFunction(id, piece) {
 
 // populate board when startButton is clicked
 $('.startButton').click(() => {
-    
     // pawns
     for(let i = 97; i < 105; i++) {
         document.querySelector('#'+ String.fromCharCode(i) + 2).style.cssText = whitePawn;
@@ -54,4 +56,36 @@ $('.startButton').click(() => {
 $('.clearButton').click(() => {
     console.log('clear');
     // ----------------add this functionality----------------
+})
+
+
+
+
+
+
+
+//---------------------------MOVE PIECES---------------------------------
+var activePiece;
+var isActive = false;
+var prevLocation;
+
+
+$('div').on('click', 'div > div', function () {
+    if($(this).css('background-image') !== 'none'){
+
+        if(!isActive) {
+            $(this).css('background-color', 'green');
+            isActive = true;
+            activePiece = $(this).css('background-image');
+            prevLocation = $(this).attr('id');
+            console.log(prevLocation);
+        }
+    } else {
+        if(isActive) {
+            $(this).css('background-image', activePiece);
+            $('#'+prevLocation).css('background-color', '');
+            $('#'+prevLocation).css('background-image', '');
+            isActive = false;
+        }
+    }
 })
