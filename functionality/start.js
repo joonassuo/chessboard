@@ -22,6 +22,7 @@ function selectorFunction(id, piece) {
 
 // populate board when startButton is clicked
 $('.startButton').click(() => {
+    startPosition = true;
     // pawns
     for (let i = 97; i < 105; i++) {
         document.querySelector('#' + String.fromCharCode(i) + 2).style.cssText = whitePawn;
@@ -50,8 +51,8 @@ $('.startButton').click(() => {
     selectorFunction('#e8', blackKing);
 })
 
-// clear board
-$('.clearButton').click(() => {
+// reset board
+$('.resetButton').click(() => {
     $('div > div').css('background-image', 'none');
 })
 
@@ -63,6 +64,7 @@ $('.clearButton').click(() => {
 var activePiece;
 var isActive = false;
 var prevLocation;
+var startPosition = false;
 
 function makeMove(square) {
     if (square.css('background-image') !== 'none') {
@@ -104,6 +106,7 @@ const berlinDefence = [
 
 // loop with delay
 var i = 0;
+
 function loop() {
     setTimeout(() => {
         makeMove($('#' + berlinDefence[i]));
@@ -111,10 +114,16 @@ function loop() {
         if (i < berlinDefence.length) {
             loop()
         }
-    }, 1000)
+    }, 500)
 }
 
 // testbutton onclick event
 $('.testButton').click(() => {
-    loop();
+    if (startPosition) {
+        i = 0;
+        loop();
+        startPosition = false;
+    } else {
+        console.log('pieces not in starting position');   
+    }
 });
