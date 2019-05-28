@@ -7,6 +7,15 @@
     border: 1px solid;
 }
 
+.button-container {
+    width: 500px;
+    margin-top: 2em;
+    text-align: center;
+}
+
+button {
+    margin: 2em;
+}
 
 #grid>div {
     width: 12.5%;

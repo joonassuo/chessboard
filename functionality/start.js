@@ -52,7 +52,7 @@ $('.startButton').click(() => {
 })
 
 // reset board
-$('.resetButton').click(() => {
+$('.clearButton').click(() => {
     $('div > div').css('background-image', 'none');
 })
 
