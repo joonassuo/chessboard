@@ -73,7 +73,6 @@ function makeMove(square) {
             isActive = true;
             activePiece = square.css('background-image');
             prevLocation = square.attr('id');
-            console.log(prevLocation);
         }
     } else {
         if (isActive) {
@@ -118,12 +117,12 @@ function loop() {
 }
 
 // testbutton onclick event
-$('.testButton').click(() => {
+$('.demoButton').click(() => {
     if (startPosition) {
         i = 0;
         loop();
         startPosition = false;
     } else {
-        console.log('pieces not in starting position');   
+        alert('Pieces need to be in starting position!');   
     }
 });
